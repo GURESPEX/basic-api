@@ -114,7 +114,7 @@ function App() {
                       outline: "2px solid rgba(255, 255, 255, 0.1)",
                       outlineOffset: -2,
                     }}
-                    className="bg-white bg-opacity-10 hover:bg-opacity-25"
+                    className="relative bg-white bg-opacity-10 before:content-[''] before:absolute before:w-full before:h-full before:bg-white before:opacity-0 hover:before:opacity-25 "
                   >
                     <img src={agent.displayIcon} alt={agent.displayName} />
                   </div>
