@@ -95,7 +95,8 @@ function App() {
             initial={{ height: 0 }}
             animate={{ height: agentSelectorShow ? "unset" : 0 }}
             transition={{ ease: [0, 0, 0, 1] }}
-            className="row gap-1 overflow-hidden"
+            className="grid gap-1 overflow-hidden"
+            style={{ gridTemplateColumns: "repeat(15, 1fr)" }}
           >
             {agents
               ? agents.data.map((agent) => (
@@ -109,7 +110,11 @@ function App() {
                     //   changeNextBackground();
                     // }}
                     key={agent.uuid}
-                    className="border border-white border-opacity-10 bg-white bg-opacity-10 hover:bg-opacity-25"
+                    style={{
+                      outline: "2px solid rgba(255, 255, 255, 0.1)",
+                      outlineOffset: -2,
+                    }}
+                    className="bg-white bg-opacity-10 hover:bg-opacity-25"
                   >
                     <img src={agent.displayIcon} alt={agent.displayName} />
                   </div>
