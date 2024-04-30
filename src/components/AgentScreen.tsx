@@ -20,7 +20,7 @@ const AgentScreen = ({ selectedAgent, map }: Props) => {
           clipPath:
             "polygon(calc(0% + 32px) 0%, calc(100% - 32px) 0%, 100% calc(0% + 32px), 100% calc(100% - 32px), calc(100% - 32px) 100%, calc(0% + 32px) 100%, 0% calc(100% - 32px), 0% calc(0% + 32px))",
         }}
-        className="row h-full m-16 mb-0"
+        className="row h-full"
       >
         {selectedAgent ? (
           <>

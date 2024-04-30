@@ -6,8 +6,6 @@ import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
 import { MapResponse } from "./types/map";
-
-import { SlArrowUp } from "react-icons/sl";
 import AgentScreen from "@/components/AgentScreen";
 
 function App() {
@@ -54,7 +52,7 @@ function App() {
         }`,
       }}
       transition={{ ease: [0, 0, 0, 1] }}
-      className="relative w-screen h-screen row justify-center overflow-hidden"
+      className="relative w-screen h-screen row justify-center p-16 overflow-hidden"
     >
       {selectedAgent && (
         <motion.img
@@ -73,24 +71,17 @@ function App() {
         transition={{ ease: [0, 0, 0, 1] }}
         className="absolute w-full h-full top-0 left-0 bg-[#0F1922]"
       />
-      <div className="w-full h-full max-w-[1280px] col z-10">
+      <div
+        className="w-full h-full max-w-[1280px] col z-10 gap-8"
+        onPointerEnter={() => {
+          setAgentSelectorShow(true);
+        }}
+        onPointerLeave={() => {
+          setAgentSelectorShow(false);
+        }}
+      >
         <AgentScreen selectedAgent={selectedAgent} map={maps.data[mapIndex]} />
-        <div
-          className="col m-16 mt-0"
-          onPointerEnter={() => {
-            setAgentSelectorShow(true);
-          }}
-          onPointerLeave={() => {
-            setAgentSelectorShow(false);
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0.1 }}
-            animate={{ opacity: agentSelectorShow ? 0.5 : 0.1 }}
-            className="row justify-center py-8"
-          >
-            <SlArrowUp className="text-3xl text-white" />
-          </motion.div>
+        <div className="col">
           <motion.div
             initial={{ height: 0 }}
             animate={{ height: agentSelectorShow ? "unset" : 0 }}
@@ -101,7 +92,7 @@ function App() {
             {agents
               ? agents.data.map((agent) => (
                   <div
-                    onPointerEnter={() => {
+                    onClick={() => {
                       setSelectedAgent(agent);
                       changeNextBackground();
                     }}
@@ -114,7 +105,11 @@ function App() {
                       outline: "2px solid rgba(255, 255, 255, 0.1)",
                       outlineOffset: -2,
                     }}
-                    className="relative bg-white bg-opacity-10 before:content-[''] before:absolute before:w-full before:h-full before:bg-white before:opacity-0 hover:before:opacity-25 "
+                    className={`relative bg-white bg-opacity-10 before:content-[''] before:absolute before:w-full before:h-full before:bg-white ${
+                      agent.uuid === selectedAgent?.uuid
+                        ? "before:opacity-25"
+                        : "before:opacity-0"
+                    } hover:before:opacity-25`}
                   >
                     <img src={agent.displayIcon} alt={agent.displayName} />
                   </div>
