@@ -92,7 +92,7 @@ function App() {
             {agents
               ? agents.data.map((agent) => (
                   <div
-                    onPointerEnter={() => {
+                    onClick={() => {
                       setSelectedAgent(agent);
                       changeNextBackground();
                     }}
@@ -109,7 +109,7 @@ function App() {
                       agent.uuid === selectedAgent?.uuid
                         ? "before:opacity-25"
                         : "before:opacity-0"
-                    } hover:before:opacity-25`}
+                    } hover:before:opacity-25 hover:cursor-pointer`}
                   >
                     <img src={agent.displayIcon} alt={agent.displayName} />
                   </div>
