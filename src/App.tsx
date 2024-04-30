@@ -92,7 +92,7 @@ function App() {
             {agents
               ? agents.data.map((agent) => (
                   <div
-                    onClick={() => {
+                    onPointerEnter={() => {
                       setSelectedAgent(agent);
                       changeNextBackground();
                     }}
